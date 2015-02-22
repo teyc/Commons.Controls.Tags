@@ -99,7 +99,6 @@
                             <StackPanel Orientation="Horizontal">
                                 <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" Margin="20,0"/>
                                 <Button x:Name="deleteButton" 
-                                        Command="{TemplateBinding DeleteCommand}"
                                         Content="+" 
                                         Style="{StaticResource RoundButtonStyle}" 
                                         Visibility="Collapsed"/>

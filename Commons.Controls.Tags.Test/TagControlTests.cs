@@ -1,6 +1,7 @@
 ﻿using Microsoft.Silverlight.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.ObjectModel;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +21,7 @@ namespace Commons.Controls.Tags.Test
         [Asynchronous]
         public void CreateTagItemControl()
         {
-            var tagItemControl = new TagItem { Content = "Monranbah Wines" };
+            var tagItemControl = new TagItem { Content = "Delete this tag" };
             TestPanel.Children.Add(tagItemControl);
             tagItemControl.OnDelete += (s, e) =>
             {
@@ -30,9 +31,21 @@ namespace Commons.Controls.Tags.Test
         }
 
         [TestMethod]
+        [Asynchronous]
         public void CreateTagItemControls()
         {
-            
+            var panel = new TagPanelTests();
+            TestPanel.Children.Add(panel);
+            var items = (panel.FindName("TagsListBox") as ListBox).Items;
+            EnqueueConditional(() =>
+            {
+                return items != null && items.Count > 0;
+            });
+            EnqueueConditional(() =>
+            {
+                return items !=null && items.Count == 0; 
+            });
+            EnqueueTestComplete();
         }
 
     }

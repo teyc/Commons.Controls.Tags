@@ -61,7 +61,7 @@ namespace Commons.Controls.Tags
         {
             if (OnDelete != null)
             {
-                OnDelete(sender, e);
+                OnDelete(this, e);
             }
         }
 
