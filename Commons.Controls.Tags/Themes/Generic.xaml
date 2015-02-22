@@ -1,112 +1,11 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Commons.Controls.Tags" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions">
+    xmlns:local="clr-namespace:Commons.Controls.Tags" 
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions">
 
-
-    <Style x:Key="RoundButtonStyle" TargetType="Button">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
-                        <Grid.Projection>
-                            <PlaneProjection/>
-                        </Grid.Projection>
-                        <VisualStateManager.CustomVisualStateManager>
-                            <ei:ExtendedVisualStateManager/>
-                        </VisualStateManager.CustomVisualStateManager>
-                        <Grid.RenderTransform>
-                            <CompositeTransform/>
-                        </Grid.RenderTransform>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates" ei:ExtendedVisualStateManager.UseFluidLayout="True">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.25"/>
-                                    <VisualTransition GeneratedDuration="0" To="Pressed"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="-45" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="contentPresenter" />
-                                        <ColorAnimation Duration="0" To="#FF6B96FC" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle" />
-                                        <DoubleAnimation Duration="0" To="3" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="grid" />
-                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimation Duration="0" To="#FF9BADD7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle" />
-                                        <DoubleAnimation Duration="0" To="-45" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="contentPresenter" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Normal"/>
-                                <VisualState x:Name="Disabled"/>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Rectangle x:Name="rectangle" Width="44" VerticalAlignment="Stretch" RadiusX="22" RadiusY="22" Margin="4" HorizontalAlignment="Right" Fill="#FFC7CAD1" RenderTransformOrigin="0.5,0.5">
-                            <Rectangle.RenderTransform>
-                                <CompositeTransform/>
-                            </Rectangle.RenderTransform>
-                        </Rectangle>
-                        <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center">
-                            <ContentPresenter.RenderTransform>
-                                <CompositeTransform Rotation="45"/>
-                            </ContentPresenter.RenderTransform>
-                        </ContentPresenter>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="FontSize" Value="20"/>
-    </Style>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Commons.Controls.Tags;component/Themes/TagItem.xaml" />       
+    </ResourceDictionary.MergedDictionaries>
     
-    <Style TargetType="local:TagItem">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:TagItem">
-                    <Grid x:Name="LayoutRoot">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="VisualStateGroup"/>
-                            <VisualStateGroup x:Name="MouseOverStates" ei:ExtendedVisualStateManager.UseFluidLayout="True">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.25"/>
-                                    <VisualTransition GeneratedDuration="0:0:0.25" To="OnMouseOver"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="OnMouseOver">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="deleteButton">
-                                            <DiscreteObjectKeyFrame KeyTime="0">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Visible</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Clipper">
-                                            <EasingColorKeyFrame KeyTime="0" Value="#FFD2D2D6"/>
-                                        </ColorAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="OnMouseOut"/>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <VisualStateManager.CustomVisualStateManager>
-                            <ei:ExtendedVisualStateManager/>
-                        </VisualStateManager.CustomVisualStateManager>
-                        <Grid HorizontalAlignment="Left" Height="50"  VerticalAlignment="Top"  >
-                            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-				                    x:Name="Clipper"
-				                    RadiusX="25" RadiusY="25"/>
-                            <StackPanel Orientation="Horizontal">
-                                <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" Margin="20,0"/>
-                                <Button x:Name="deleteButton" 
-                                        Content="+" 
-                                        Style="{StaticResource RoundButtonStyle}" 
-                                        Visibility="Collapsed"/>
-                            </StackPanel>
-                        </Grid>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
 </ResourceDictionary>
