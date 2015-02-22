@@ -1,0 +1,18 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Commons.Controls.Tags" x:Class="Commons.Controls.Tags.SilverlightControl1"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+	<UserControl.Resources>
+		<ResourceDictionary Source="Themes/generic.xaml" />
+	</UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White">
+
+        <local:TagItem HorizontalAlignment="Left" Height="95" Margin="57,125,0,0" VerticalAlignment="Top" Width="216"
+                       Content="Moranbah Mines" BorderThickness="2"/>
+
+    </Grid>
+</UserControl>
